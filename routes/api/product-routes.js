@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   //   products.push(productsData[i].get({ plain: true }))
   // }
   const products = productsData.map((productData) => productData.get({ plain: true }));
-  console.log(products);
+  // console.log(products);
   res.json(products);
   // find all products
   // be sure to include its associated Category and Tag data

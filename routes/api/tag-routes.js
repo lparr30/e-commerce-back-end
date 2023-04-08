@@ -26,11 +26,20 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  const tag = await Tag.create({ tag_name: req.body.tag_name })
+  res.json(tag);
   // create a new tag
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+  const update = await Tag.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  });
+
+  res.json(update);
   // update a tag's name by its `id` value
 });
 

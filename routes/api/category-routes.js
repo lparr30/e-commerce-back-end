@@ -28,16 +28,28 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  console.log(req.body.name);
+  const category = await Category.create({
+    category_name: req.body.name
+  });
+  res.json(category);
   // create a new category
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+  const updated = await Category.update(req.body, {
+    where: { id: req.params.id }
+  })
+  
+  console.log(updated)
+  res.json(updated);
   // update a category by its `id` value
 });
 
-router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
-});
+
+// router.delete('/:id', (req, res) => {
+//   // delete a category by its `id` value
+// });
 
 module.exports = router;
